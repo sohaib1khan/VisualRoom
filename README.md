@@ -6,23 +6,66 @@ animates **Bender** as a live mood-indicator of how cramped your disk is.
 Default mode is an interactive TUI. Cleanup is **dry-run unless you pass
 `--force`**. Files are moved to quarantine, not silently deleted.
 
-Requires **Go 1.22+**.
+Source builds need **Go 1.22+**. Distro packages are often older than that
+(the `x/exp/slog` / `atomic.Int64` errors). Use the installer below — it
+downloads a release binary when one exists, otherwise bootstraps Go 1.22.8
+and builds a static Linux binary. You do not need a working Go install.
 
 ---
 
-## Build
+## Install (any Linux)
+
+One line, from anywhere:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/sohaib1khan/VisualRoom/main/install.sh | bash
+```
+
+Or from a clone (this is the one to use if `go build` just failed):
 
 ```bash
 git clone https://github.com/sohaib1khan/VisualRoom.git
 cd VisualRoom
-go build -o vroom .
+chmod +x install.sh
+./install.sh
 ```
 
-Run tests:
+That drops `vroom` in `~/.local/bin` (or `/usr/local/bin` if you can write
+there). If the command is not found:
 
 ```bash
-go test ./...
+export PATH="$HOME/.local/bin:$PATH"
 ```
+
+Optional:
+
+```bash
+PREFIX=/usr/local/bin sudo -E ./install.sh   # system-wide, if you want
+VROOM_GO_VERSION=1.22.8 ./install.sh         # pin the bootstrap toolchain
+```
+
+---
+
+## Build (developers)
+
+Need Go 1.22 or newer. Check with `go version`.
+
+```bash
+git clone https://github.com/sohaib1khan/VisualRoom.git
+cd VisualRoom
+make          # -> ./vroom
+make test
+make install  # -> ~/.local/bin/vroom
+```
+
+Equivalent:
+
+```bash
+CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o vroom .
+```
+
+Do **not** use a distro Go older than 1.22; `./install.sh` or the official
+[Go tarball](https://go.dev/dl/) is the supported path.
 
 ---
 
