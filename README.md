@@ -6,8 +6,8 @@
 A Go terminal app that scans disk usage, explains it in plain language, and
 animates a live mood-indicator of how cramped your disk is.
 
-Default mode is an interactive TUI. Cleanup is **dry-run unless you pass
-`--force`**. Files are moved to quarantine, not silently deleted.
+Default mode is an interactive TUI. Cleanup is **dry-run unless you pass**
+`--force`. Files are moved to quarantine, not silently deleted.
 
 Source builds need **Go 1.22+**. Distro packages are often older than that
 (the `x/exp/slog` / `atomic.Int64` errors). Use the installer below — it
@@ -15,6 +15,8 @@ downloads a release binary when one exists, otherwise bootstraps Go 1.22.8
 and builds a static Linux binary. You do not need a working Go install.
 
 ---
+
+
 
 ## Install (any Linux)
 
@@ -49,6 +51,8 @@ VROOM_GO_VERSION=1.22.8 ./install.sh         # pin the bootstrap toolchain
 
 ---
 
+
+
 ## Build (developers)
 
 Need Go 1.22 or newer. Check with `go version`.
@@ -71,6 +75,8 @@ Do **not** use a distro Go older than 1.22; `./install.sh` or the official
 [Go tarball](https://go.dev/dl/) is the supported path.
 
 ---
+
+
 
 ## Run
 
@@ -106,24 +112,30 @@ Suggestions:
 
 ---
 
+
+
 ## TUI keys
 
-| Key | Action |
-|-----|--------|
-| `↑` `↓` / `j` `k` | Move selection |
-| `enter` / `l` | Open folder (or file details) |
-| `backspace` / `h` | Go up |
-| `space` | Toggle mark |
-| `d` / `c` | Review marked items for quarantine |
-| `i` | Details for the selection |
-| `s` | Suggestions |
-| `r` | Rescan this folder |
-| `?` | Help |
-| `q` | Quit |
+
+| Key               | Action                             |
+| ----------------- | ---------------------------------- |
+| `↑` `↓` / `j` `k` | Move selection                     |
+| `enter` / `l`     | Open folder (or file details)      |
+| `backspace` / `h` | Go up                              |
+| `space`           | Toggle mark                        |
+| `d` / `c`         | Review marked items for quarantine |
+| `i`               | Details for the selection          |
+| `s`               | Suggestions                        |
+| `r`               | Rescan this folder                 |
+| `?`               | Help                               |
+| `q`               | Quit                               |
+
 
 The mascot pose follows **free-space %**: relaxed → sarcastic → sweating → panicking → critical.
 
 ---
+
+
 
 ## Cleanup (safe by default)
 
@@ -150,6 +162,8 @@ Rules baked in:
 
 ---
 
+
+
 ## Cron / notifications
 
 ```bash
@@ -169,6 +183,8 @@ Intervals: `hourly`, `daily`, `weekly`, or a 5-field cron expression.
 
 ---
 
+
+
 ## Config
 
 On first run Vroom uses built-in defaults and can seed:
@@ -177,20 +193,24 @@ On first run Vroom uses built-in defaults and can seed:
 ~/.vroom/config.yaml
 ```
 
-A copy of the shipped defaults lives in [`config/default.yaml`](config/default.yaml).
+A copy of the shipped defaults lives in `[config/default.yaml](config/default.yaml)`.
 Edit the file under `~/.vroom/` to change thresholds, protected paths, quarantine TTL, and tick rate.
 
 Data Vroom writes:
 
-| Path | Purpose |
-|------|---------|
-| `~/.vroom/config.yaml` | User config |
-| `~/.vroom/cache.json` | Incremental scan cache |
-| `~/.vroom/quarantine/` | Quarantined files |
-| `~/.vroom/audit.log` | Every scan, quarantine, restore, purge |
-| `~/.vroom/status.txt` | Last notify-mode summary |
+
+| Path                   | Purpose                                |
+| ---------------------- | -------------------------------------- |
+| `~/.vroom/config.yaml` | User config                            |
+| `~/.vroom/cache.json`  | Incremental scan cache                 |
+| `~/.vroom/quarantine/` | Quarantined files                      |
+| `~/.vroom/audit.log`   | Every scan, quarantine, restore, purge |
+| `~/.vroom/status.txt`  | Last notify-mode summary               |
+
 
 ---
+
+
 
 ## Docker
 
@@ -211,6 +231,8 @@ Cleanup from a container needs a **writable** mount **and** `--force`.
 
 ---
 
+
+
 ## Commands cheat sheet
 
 ```text
@@ -230,9 +252,12 @@ Global flags: `--root <path>`, `-q` / `--quiet`, `--version`.
 
 ---
 
+
+
 ## Credits
 
-VisualRoom / Vroom is written by **Sohaib Khan**.
+VisualRoom / Vroom
 
 - GitHub: [sohaib1khan](https://github.com/sohaib1khan)
 - Repository: [https://github.com/sohaib1khan/VisualRoom](https://github.com/sohaib1khan/VisualRoom)
+
