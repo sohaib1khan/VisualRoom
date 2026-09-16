@@ -1,0 +1,57 @@
+# VisualRoom / Vroom — default config
+# Copied to ~/.vroom/config.yaml on first run. Edit that copy.
+
+scan:
+  max_depth: 1
+  follow_symlinks: false
+  skip_paths:
+    - /proc
+    - /sys
+    - /dev
+    - /run
+    - /snap
+
+thresholds:
+  relaxed: 50    # > 50% free
+  sarcastic: 20  # 20–50% free
+  sweating: 10   # 10–20% free
+  panicking: 3   # 3–10% free
+  # below panicking = critical
+
+bender:
+  tick_ms: 110
+  catchphrases: true
+
+cleanup:
+  quarantine_dir: ~/.vroom/quarantine
+  ttl_days: 7
+  dry_run: true
+  home_only: true
+  protected:
+    - ~/.ssh
+    - ~/.gnupg
+    - ~/.vroom
+    - ~/.gitconfig
+  auto_clean:
+    min_age_days: 30
+    patterns:
+      - "*.tmp"
+      - "*.log"
+      - "*.swp"
+    # Flagged in suggestions; never auto-deleted
+    flag_only:
+      - node_modules
+      - .cache
+      - __pycache__
+      - .tox
+      - .venv
+
+scheduler:
+  engine: native   # native (crontab) | internal (robfig daemon)
+  interval: daily
+  mode: notify     # notify | clean
+
+notifications:
+  desktop: true
+  status_file: ~/.vroom/status.txt
+  login_hook: false

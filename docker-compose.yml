@@ -1,0 +1,11 @@
+services:
+  vroom:
+    build: .
+    volumes:
+      - ${HOME}:/scan:ro
+      - vroom-data:/root/.vroom
+    stdin_open: true
+    tty: true
+    command: watch --root /scan
+volumes:
+  vroom-data:

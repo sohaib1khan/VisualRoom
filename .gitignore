@@ -1,0 +1,14 @@
+/vroom
+/vroom.exe
+*.exe
+*.test
+*.out
+dist/
+.idea/
+.vscode/
+*.swp
+*~
+.env
+.DS_Store
+blueprint.md
+frames_dump.txt
