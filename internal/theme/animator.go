@@ -20,11 +20,11 @@ type Animator struct {
 	shownUsage  float64
 	usageVel    float64
 	targetUsage float64
-	cfg         config.BenderConfig
+	cfg         config.AnimationConfig
 	th          config.Thresholds
 }
 
-func NewAnimator(cfg config.BenderConfig, th config.Thresholds) *Animator {
+func NewAnimator(cfg config.AnimationConfig, th config.Thresholds) *Animator {
 	ms := cfg.TickMS
 	if ms < 50 {
 		ms = 200

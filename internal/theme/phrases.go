@@ -50,10 +50,10 @@ func Catchphrases(state State) []string {
 	switch state {
 	case StateRelaxed:
 		return []string{
-			"Bite my shiny metal disk!",
-			"I'm 40% disk, 40% beer, 20% sass.",
-			"Cruising. Don't touch my stuff.",
-			"This is the best disk of my life.",
+			"Plenty of room. You're cruising.",
+			"Disk looks healthy. Keep it that way.",
+			"Free space is comfortable. No rush.",
+			"All good. This is the easy part.",
 		}
 	case StateSarcastic:
 		return []string{
@@ -64,24 +64,24 @@ func Catchphrases(state State) []string {
 		}
 	case StateSweating:
 		return []string{
-			"Hey meatbag, that's not enough room for my beer!",
-			"Sweating oil over here. Clean something.",
-			"My circuits are pacing. Yours should be too.",
-			"We're running out of shiny. That's a problem.",
+			"Free space is getting tight. Time to clean.",
+			"This disk is filling up. Pick something to quarantine.",
+			"Running low. Caches and downloads first.",
+			"We're running out of room. That's a problem.",
 		}
 	case StatePanicking:
 		return []string{
-			"I need my hands! Do something before I rust shut!",
-			"THIS IS NOT A DRILL. Well, maybe a disk drill.",
-			"I'm on fire and it's YOUR clutter!",
-			"Quarantine the junk. Now. Please. I'm begging. I'm not.",
+			"Disk is nearly full. Clean something now.",
+			"This is not a drill. Quarantine the junk.",
+			"Free space is critical. Start with the biggest folders.",
+			"Quarantine the clutter before writes start failing.",
 		}
 	default:
 		return []string{
-			"KILL ALL HUMANS — wait, no, kill all leftover ISOs.",
-			"Powered down. Wake me when you delete something.",
-			"Blocks new writes warning. That's not a joke.",
-			"I'm already dead. Your disk is next.",
+			"Disk is effectively full. Delete leftover ISOs.",
+			"Powered down mood. Wake me when you free some space.",
+			"New writes may fail. Clear space immediately.",
+			"Critical: almost no free space left.",
 		}
 	}
 }

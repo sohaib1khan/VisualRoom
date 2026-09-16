@@ -8,13 +8,14 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
 	"github.com/spf13/cobra"
+	"vroom/internal/about"
 	"vroom/internal/config"
 	"vroom/internal/theme"
 )
 
 var previewCmd = &cobra.Command{
 	Use:   "preview",
-	Short: "Preview Bender animations (1–5 switch mood, q quit)",
+	Short: "Preview health-mascot animations (1–5 switch mood, q quit)",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		cfg := config.MustLoad()
 		p := tea.NewProgram(newPreviewModel(cfg), tea.WithAltScreen())
@@ -35,7 +36,7 @@ type previewModel struct {
 }
 
 func newPreviewModel(cfg *config.Config) previewModel {
-	a := theme.NewAnimator(cfg.Bender, cfg.Thresholds)
+	a := theme.NewAnimator(cfg.Animation, cfg.Thresholds)
 	pct := 80.0
 	a.SetFreePct(pct)
 	return previewModel{anim: a, th: cfg.Thresholds, state: theme.StateRelaxed, pct: pct}
@@ -100,10 +101,10 @@ func (m previewModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 func (m previewModel) View() string {
 	title := lipgloss.NewStyle().Bold(true).Foreground(lipgloss.Color("#F59E0B")).
-		Render(" VROOM  ·  Bender preview ")
+		Render(" VROOM  ·  mood preview ")
 	mood := strings.ToUpper(m.state.String())
 	meta := fmt.Sprintf("%s   simulated free space %.0f%%", mood, m.pct)
-	help := "1 relaxed  2 cigar  3 sweat  4 fire  5 dead   n/p cycle   q quit"
+	help := "1 relaxed  2 sarcastic  3 sweat  4 fire  5 critical   n/p cycle   q quit"
 	art := m.anim.Frame()
 	phrase := `"` + m.anim.Phrase() + `"`
 	body := lipgloss.JoinVertical(lipgloss.Center,
@@ -116,6 +117,8 @@ func (m previewModel) View() string {
 		lipgloss.NewStyle().Foreground(lipgloss.Color("#F59E0B")).Italic(true).Render(phrase),
 		"",
 		lipgloss.NewStyle().Foreground(lipgloss.Color("#94A3B8")).Render(help),
+		"",
+		lipgloss.NewStyle().Foreground(lipgloss.Color("#64748B")).Render(about.Credit()),
 	)
 	return lipgloss.Place(m.width, m.height, lipgloss.Center, lipgloss.Center, body)
 }

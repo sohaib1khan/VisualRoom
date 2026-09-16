@@ -68,7 +68,7 @@ func (c canvas) string() string {
 func draw(state State, i int) string {
 	c := newCanvas()
 	x, y := 0, 1
-	pose := "beer"
+	pose := "idle"
 	eyes := "open"
 	fx := "none"
 
@@ -76,24 +76,24 @@ func draw(state State, i int) string {
 	case StateRelaxed:
 		switch i % 8 {
 		case 0:
-			pose, eyes = "beer", "open"
+			pose, eyes = "idle", "open"
 		case 1:
 			x, pose, eyes = -1, "leftup", "open"
 		case 2:
 			y, pose, eyes = 0, "out", "happy"
 		case 3:
-			x, pose, eyes = 1, "toast", "open"
+			x, pose, eyes = 1, "wave", "open"
 		case 4:
-			pose, eyes = "beer", "blink"
+			pose, eyes = "idle", "blink"
 		case 5:
-			x, pose, eyes = -1, "outbeer", "open"
+			x, pose, eyes = -1, "out", "open"
 		case 6:
-			pose, eyes = "sip", "happy"
+			pose, eyes = "idle", "happy"
 		case 7:
-			y, pose, eyes = 0, "toast", "happy"
+			y, pose, eyes = 0, "wave", "happy"
 		}
 	case StateSarcastic:
-		x, pose, fx = 1, "cigar", "smoke"
+		x, pose, fx = 1, "smug", "haze"
 		eyes = "side"
 		switch i % 8 {
 		case 1, 5:
@@ -164,9 +164,9 @@ func poseArt(pose string) []string {
          █▓▓0▓▓0▓▓█
          ▀█╰────╯█▀
        ▄▄██▀▀▀▀▀▀██▄▄
-      █  █  ▄██▄  █  █▒▓
-      █  █  █  █  █  ▒▒
-      ▀  █  ▀██▀  █  ▀▀
+      █  █  ▄██▄  █  █
+      █  █  █  █  █  █
+      ▀  █  ▀██▀  █  ▀
        ▀▀██▄▄▄▄▄▄██▀▀
          █        █
         ██        ██
@@ -187,46 +187,14 @@ func poseArt(pose string) []string {
          █        █
         ██        ██
         ▀▀        ▀▀`)
-	case "outbeer":
+	case "wave":
 		return splitArt(`
               o
-             ▄█▄
-         ▄████████▄
-         ██████████
+             ▄█▄            ▐█
+         ▄████████▄          █
+         ██████████          ▀
          █▓▓0▓▓0▓▓█
          ▀█╰────╯█▀
-       ▄▄██▀▀▀▀▀▀██▄▄
-  ▀▀▀██  █  ▄██▄  █  █▒▓
-     ▀   █  █  █  █  ▒▒
-         █  ▀██▀  █  ▀▀
-       ▀▀██▄▄▄▄▄▄██▀▀
-         █        █
-        ██        ██
-        ▀▀        ▀▀`)
-	case "toast":
-		return splitArt(`
-              o
-             ▄█▄             ▒▓
-         ▄████████▄          ▒▒
-         ██████████         ▐█
-         █▓▓0▓▓0▓▓█          ▀
-         ▀█╰────╯█▀
-       ▄▄██▀▀▀▀▀▀██▄▄
-      █  █  ▄██▄  █  █
-      █  █  █  █  █  █
-      ▀  █  ▀██▀  █  ▀
-       ▀▀██▄▄▄▄▄▄██▀▀
-         █        █
-        ██        ██
-        ▀▀        ▀▀`)
-	case "sip":
-		return splitArt(`
-              o
-             ▄█▄
-         ▄████████▄     ▒▓
-         ██████████     ▒▒
-         █▓▓0▓▓0▓▓█     ▐█
-         ▀█▀▀▀▀▀▀█▀
        ▄▄██▀▀▀▀▀▀██▄▄
       █  █  ▄██▄  █
       █  █  █  █  █
@@ -235,14 +203,14 @@ func poseArt(pose string) []string {
          █        █
         ██        ██
         ▀▀        ▀▀`)
-	case "cigar":
+	case "smug":
 		return splitArt(`
               o
              ▄█▄
          ▄████████▄
          ██████████
          █▓▓0▓▓0▓▓█
-         ▀█──────█▀▒▒─
+         ▀█──────█▀
        ▄▄██▀▀▀▀▀▀██▄▄
       █  █  ▄██▄  █  █
       █  █  █  █  █  █
@@ -315,7 +283,7 @@ func poseArt(pose string) []string {
          █        █
         ▀▀        ▀▀
                       `)
-	default: // beer
+	default: // idle
 		return splitArt(`
               o
              ▄█▄
@@ -324,9 +292,9 @@ func poseArt(pose string) []string {
          █▓▓0▓▓0▓▓█
          ▀█╰────╯█▀
        ▄▄██▀▀▀▀▀▀██▄▄
-      █  █  ▄██▄  █  █▒▓
-      █  █  █  █  █  ▒▒
-      ▀  █  ▀██▀  █  ▀▀
+      █  █  ▄██▄  █  █
+      █  █  █  █  █  █
+      ▀  █  ▀██▀  █  ▀
        ▀▀██▄▄▄▄▄▄██▀▀
          █        █
         ██        ██
@@ -342,7 +310,7 @@ func splitArt(s string) []string {
 
 func drawFX(c canvas, x, y int, fx string, i int) {
 	switch fx {
-	case "smoke":
+	case "haze":
 		puffs := []struct {
 			dx, dy int
 			ch     string
@@ -383,7 +351,7 @@ func drawFX(c canvas, x, y int, fx string, i int) {
 			c.blitSoft(x+s.dx+(i%2), y+s.dy+(n+i)%2, s.ch)
 		}
 	case "marquee":
-		msg := "KILL ALL HUMANS  KILL ALL HUMANS  "
+		msg := "DISK FULL  DISK FULL  DISK FULL  "
 		start := (i * 2) % 18
 		c.blit(x+12, y+8, msg[start:start+6])
 		if i%2 == 0 {

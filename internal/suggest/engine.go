@@ -58,7 +58,7 @@ func Analyze(cfg *config.Config, root *scanner.Node, disk scanner.DiskUsage) []S
 			Bytes:  nmBytes,
 			Title:  fmt.Sprintf("Flag-only caches totaling %s", humanize.Bytes(nmBytes)),
 			Detail: fmt.Sprintf("Found %s of node_modules/.cache/__pycache__ style dirs. Flagged, never auto-deleted.", humanize.Count(nmCount, "folder", "folders")),
-			Voice:  fmt.Sprintf("You have cache-ish folders totaling %s across %d spots. I'm not touching them without a meatbag confirmation.", humanize.Bytes(nmBytes), nmCount),
+			Voice:  fmt.Sprintf("You have cache-ish folders totaling %s across %d spots. Flagged only — confirm before deleting.", humanize.Bytes(nmBytes), nmCount),
 		})
 	}
 
@@ -90,7 +90,7 @@ func Analyze(cfg *config.Config, root *scanner.Node, disk scanner.DiskUsage) []S
 			Kind:   "health",
 			Title:  "Free space is looking grim",
 			Detail: humanize.DiskSummary(disk.Avail, disk.Total),
-			Voice:  "I'm sweating oil. Pick something on the left and hit d before I rust.",
+			Voice:  "Free space is getting tight. Pick something on the left and hit d.",
 		})
 	}
 
@@ -99,7 +99,7 @@ func Analyze(cfg *config.Config, root *scanner.Node, disk scanner.DiskUsage) []S
 			Kind:   "ok",
 			Title:  "Nothing spicy to report",
 			Detail: "No stale Downloads, no huge cache piles, empty quarantine.",
-			Voice:  "I'm 40% disk, 40% beer, 20% sass — and you're fine. For now.",
+			Voice:  "Nothing spicy to report. Disk looks fine for now.",
 		})
 	}
 	return out

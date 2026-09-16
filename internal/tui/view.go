@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/lipgloss"
+	"vroom/internal/about"
 	"vroom/internal/humanize"
 	"vroom/internal/theme"
 )
@@ -58,7 +59,7 @@ func (m Model) headerBar() string {
 	}
 	left := lipgloss.NewStyle().Bold(true).Foreground(orange).Render(" VROOM ")
 	mid := lipgloss.NewStyle().Foreground(white).Render(path)
-	right := lipgloss.NewStyle().Foreground(muted).Render("Bender Edition")
+	right := lipgloss.NewStyle().Foreground(muted).Render(about.Author)
 	if m.scanning {
 		right = m.spinner.View() + " scanning"
 	}
@@ -96,7 +97,7 @@ func (m Model) treeView() string {
 		rightW = m.width - leftW - 1
 	}
 	left := m.treePane(leftW)
-	right := m.benderPane(rightW)
+	right := m.mascotPane(rightW)
 	return lipgloss.JoinHorizontal(lipgloss.Top, left, right)
 }
 
@@ -164,7 +165,7 @@ func (m Model) treePane(width int) string {
 	return style.Render(b.String())
 }
 
-func (m Model) benderPane(width int) string {
+func (m Model) mascotPane(width int) string {
 	stColor := stateColor(m.anim.State())
 	style := lipgloss.NewStyle().
 		Border(lipgloss.RoundedBorder()).
@@ -271,7 +272,7 @@ func (m Model) confirmView() string {
 
 func (m Model) suggestView() string {
 	var b strings.Builder
-	b.WriteString(lipgloss.NewStyle().Bold(true).Foreground(orange).Render("Bender's suggestions") + "\n\n")
+	b.WriteString(lipgloss.NewStyle().Bold(true).Foreground(orange).Render("Suggestions") + "\n\n")
 	for _, s := range m.suggests {
 		b.WriteString(lipgloss.NewStyle().Bold(true).Render("• "+s.Title) + "\n")
 		b.WriteString("  " + s.Voice + "\n")
@@ -286,7 +287,8 @@ func (m Model) suggestView() string {
 
 func (m Model) helpView() string {
 	text := `
-Vroom — Bender Edition
+Vroom — VisualRoom
+` + about.Credit() + `
 
   ↑ ↓ / j k     move selection
   enter / l     drill into folder (or file details)

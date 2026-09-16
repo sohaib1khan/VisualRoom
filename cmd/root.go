@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 
 	"github.com/spf13/cobra"
+	"vroom/internal/about"
 	"vroom/internal/config"
 )
 
@@ -16,12 +17,16 @@ var (
 
 var rootCmd = &cobra.Command{
 	Use:   "vroom",
-	Short: "Animated CLI disk usage monitor (Bender Edition)",
+	Short: "Animated CLI disk usage monitor",
 	Long: `Vroom scans disk usage, explains it in plain language, and animates
-Bender as a live mood-indicator of disk health.
+a live mood-indicator of disk health.
+
+Author: ` + about.Author + `
+Repo:   ` + about.Repo + `
 
 Default command is interactive watch mode. Cleanup is dry-run unless --force
 is passed; files are quarantined, never silently deleted.`,
+	Version:       about.Version,
 	SilenceUsage:  true,
 	SilenceErrors: true,
 	Args:          cobra.MaximumNArgs(1),

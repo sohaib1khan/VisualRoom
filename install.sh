@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Install Vroom on Linux. Works without a local Go toolchain.
+# Install VisualRoom (Vroom) on Linux. Works without a local Go toolchain.
+# Author: Sohaib Khan  https://github.com/sohaib1khan/VisualRoom
 #
 #   curl -fsSL https://raw.githubusercontent.com/sohaib1khan/VisualRoom/main/install.sh | bash
 #

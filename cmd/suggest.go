@@ -13,7 +13,7 @@ import (
 
 var suggestCmd = &cobra.Command{
 	Use:   "suggest [path]",
-	Short: "Print rule-based cleanup suggestions in Bender's voice",
+	Short: "Print rule-based cleanup suggestions",
 	Args:  cobra.MaximumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		root, err := resolveRoot(args, true)

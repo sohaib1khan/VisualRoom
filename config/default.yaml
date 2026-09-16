@@ -1,4 +1,5 @@
 # VisualRoom / Vroom — default config
+# Author: Sohaib Khan  https://github.com/sohaib1khan/VisualRoom
 # Copied to ~/.vroom/config.yaml on first run. Edit that copy.
 
 scan:
@@ -18,7 +19,7 @@ thresholds:
   panicking: 3   # 3–10% free
   # below panicking = critical
 
-bender:
+animation:
   tick_ms: 110
   catchphrases: true
 

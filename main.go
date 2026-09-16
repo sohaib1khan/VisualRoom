@@ -1,3 +1,6 @@
+// VisualRoom (Vroom) — disk usage TUI
+// Author: Sohaib Khan
+// Repo:   https://github.com/sohaib1khan/VisualRoom
 package main
 
 import (

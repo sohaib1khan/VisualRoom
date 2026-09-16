@@ -70,7 +70,7 @@ func New(root string, cfg *config.Config) Model {
 	return Model{
 		cfg:      cfg,
 		walker:   scanner.New(scanner.DefaultOptions()),
-		anim:     theme.NewAnimator(cfg.Bender, cfg.Thresholds),
+		anim:     theme.NewAnimator(cfg.Animation, cfg.Thresholds),
 		spinner:  sp,
 		rootPath: root,
 		marked:   map[string]bool{},

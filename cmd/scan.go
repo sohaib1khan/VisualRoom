@@ -60,7 +60,7 @@ var scanCmd = &cobra.Command{
 			printChildren(node, 0)
 			fmt.Println()
 			fmt.Println(humanize.DiskSummary(disk.Avail, disk.Total))
-			fmt.Printf("Bender (%s): %s\n", st, phrase)
+			fmt.Printf("mood (%s): %s\n", st, phrase)
 		}
 		if scanNotify {
 			notify.AfterScan(cfg, disk)

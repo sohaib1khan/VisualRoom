@@ -7,7 +7,7 @@ import (
 
 var watchCmd = &cobra.Command{
 	Use:   "watch [path]",
-	Short: "Interactive TUI with animated Bender (default)",
+	Short: "Interactive TUI with animated disk-health mascot (default)",
 	Args:  cobra.MaximumNArgs(1),
 	RunE:  runWatch,
 }

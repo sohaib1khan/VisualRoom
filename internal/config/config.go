@@ -15,7 +15,7 @@ const AppName = "vroom"
 type Config struct {
 	Scan          ScanConfig          `mapstructure:"scan"`
 	Thresholds    Thresholds          `mapstructure:"thresholds"`
-	Bender        BenderConfig        `mapstructure:"bender"`
+	Animation     AnimationConfig     `mapstructure:"animation"`
 	Cleanup       CleanupConfig       `mapstructure:"cleanup"`
 	Scheduler     SchedulerConfig     `mapstructure:"scheduler"`
 	Notifications NotificationsConfig `mapstructure:"notifications"`
@@ -34,7 +34,7 @@ type Thresholds struct {
 	Panicking float64 `mapstructure:"panicking"`
 }
 
-type BenderConfig struct {
+type AnimationConfig struct {
 	TickMS       int  `mapstructure:"tick_ms"`
 	Catchphrases bool `mapstructure:"catchphrases"`
 }
@@ -85,7 +85,7 @@ func Default() *Config {
 			Sweating:  10,
 			Panicking: 3,
 		},
-		Bender: BenderConfig{
+		Animation: AnimationConfig{
 			TickMS:       110,
 			Catchphrases: true,
 		},

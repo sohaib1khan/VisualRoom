@@ -1,7 +1,10 @@
 # VisualRoom (Vroom)
 
+**Author:** [Sohaib Khan](https://github.com/sohaib1khan)  
+**Repository:** [github.com/sohaib1khan/VisualRoom](https://github.com/sohaib1khan/VisualRoom)
+
 A Go terminal app that scans disk usage, explains it in plain language, and
-animates **Bender** as a live mood-indicator of how cramped your disk is.
+animates a live mood-indicator of how cramped your disk is.
 
 Default mode is an interactive TUI. Cleanup is **dry-run unless you pass
 `--force`**. Files are moved to quarantine, not silently deleted.
@@ -87,7 +90,7 @@ One-shot size listing (no TUI):
 ./vroom scan . --quiet
 ```
 
-Preview Bender’s moods without walking a disk:
+Preview mascot moods without walking a disk:
 
 ```bash
 ./vroom preview
@@ -95,7 +98,7 @@ Preview Bender’s moods without walking a disk:
 
 Keys in preview: `1`–`5` switch mood, `n` / `p` cycle, `q` quit.
 
-Suggestions in Bender’s voice:
+Suggestions:
 
 ```bash
 ./vroom suggest ~
@@ -118,7 +121,7 @@ Suggestions in Bender’s voice:
 | `?` | Help |
 | `q` | Quit |
 
-Bender’s pose follows **free-space %**: relaxed → sarcastic → sweating → panicking → critical.
+The mascot pose follows **free-space %**: relaxed → sarcastic → sweating → panicking → critical.
 
 ---
 
@@ -223,4 +226,13 @@ vroom purge [--all]
 vroom cron install|remove|status|run|daemon
 ```
 
-Global flags: `--root <path>`, `-q` / `--quiet`.
+Global flags: `--root <path>`, `-q` / `--quiet`, `--version`.
+
+---
+
+## Credits
+
+VisualRoom / Vroom is written by **Sohaib Khan**.
+
+- GitHub: [sohaib1khan](https://github.com/sohaib1khan)
+- Repository: [https://github.com/sohaib1khan/VisualRoom](https://github.com/sohaib1khan/VisualRoom)
